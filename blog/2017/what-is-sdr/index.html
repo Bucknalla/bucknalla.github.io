@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>What is Software Defined Radio?</title>
+<meta name="description" content="The term, Software Defined Radio (SDR) often gets conflated by the idea of Software Controlled Radios (SCR), which in essence are part of the control layer f...">
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="http://bucknall.codes/blog/2017/what-is-sdr/">
+<link rel="alternate" type="application/rss+xml" title="Alex Bucknall" href="http://bucknall.codes/feed.xml" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52446115-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Bucknall<span>codes</span></a></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/contact" title="Contact">Contact</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">What is Software Defined Radio?</h1>
+      <em class="post-meta">
+        <time>Dec 25, 2017</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      
+        <figure class="post-thumbnail ">
+          <img src="/images/zed-sdr.png" alt="What is Software Defined Radio?">
+        </figure>
+      
+      <p>The term, <strong>Software Defined Radio</strong> (SDR) often gets conflated by the idea of Software Controlled Radios (SCR), which in essence are part of the control layer for an SDR but are by no means SDRs themselves. An SCR might be a radio system that is tunable or managed by software but the physical layer remains fixed in hardware. In contrast, SDRs are radios in which all or part of the physical layers (hardware) are manipulated/configured through the use of software.</p>
+
+<p>In this blog post, I’ll dive into the what is meant by a “physical layer” further on but for now this is the layer that controls the modulation/demodulation, filtering, encoding, etc. of the receieved and/or transmitted signals. For example, a car radio might be controlled by software managing the frequencies of the user’s desired radio stations; this would be defined as a Software Controlled Radio.</p>
+
+<h2 id="thats-interesting-but-why-would-i-need-an-sdr">That’s interesting but why would I need an SDR?</h2>
+
+<p>SDR is interesting to a number of different types of users from academic to military application and from commercial to consumer. It might surprise you to know that you likely interact with an SDR every day, your mobile/cellular phone.</p>
+
+<h3 id="academic-research">Academic Research</h3>
+
+<p>This blog post hardly covers what can be done with SDR as every day new tools are frameworks are being published, offering open source implementations of current standards such as 802.11, ZigBee, LoRa and Bluetooth. Tools such as GNU Radio Companion when combined with lower cost wideband SDR hardware make it easier, faster and increasingly affordable for academics to explore with their research. My personal research interests relate to upcoming cellular standards for IoT and designing adaptive baseband layers on top of partially reconfigurable hardware (using a Xilinx Zynq SoC).</p>
+
+<h3 id="hobbyist-interest">Hobbyist Interest</h3>
+
+<p>Here’s a run down on some of the interesting things you can do with SDR:</p>
+
+<ul>
+  <li>Listen to Broadcast Radio (FM &amp; AM)</li>
+  <li>Set up your own HAM Radio</li>
+  <li>Get involved with Radio Astronomy</li>
+  <li>Track Aircraft with the Mode S Protocol</li>
+  <li>Track Ships and other Vessels with AIS</li>
+  <li>Build your own GSM Network</li>
+  <li>Experiment with various other RF Protocols</li>
+  <li>Many more!</li>
+</ul>
+
+<p>Please note that this is a none exclusive list as this hardly scratches the surface as to what can be done with SDR!</p>
+
+<h2 id="ok-youve-convinced-me-where-can-i-start-learning-about-sdr">Ok, you’ve convinced me! Where can I start learning about SDR?</h2>
+
+<p>Historically, SDR has had a relatively high barrier to entry for beginners as the cost point of typical open SDRs hardware and toolkits has been in the region of £1000+. Fortunately, the open source community has assembled a fantastic set of tools that support a huge variety of radios, known as GNU Radio. GNU Radio applications can be written in C++ &amp; Python lanugages as well as assembled in flow diagram formats using a tool called the GNU Radio Companion. This toolkit is 100% and supports from the very low end of SDRs (~£20) all the way through to industry standard devices.</p>
+
+<p>To get started, I’d recommend taking a look at <img src="https://www.rtl-sdr.com/about-rtl-sdr/" alt="RTL-SDR" />, a $20 USB TV Tuner Dongle that can be used as a computer based radio scanner. This nifty device will let you play with a whole range of interesting SDR from simple amplitude &amp; frequency modulation/demodulation to <img src="https://blog.kroy.io/monitoring-home-power-consumption-for-less-than-25/" alt="reading smart meters" />.</p>
+
+<h2 id="useful-sdr-resources">Useful SDR Resources</h2>
+
+<ul>
+  <li><a href="https://greatscottgadgets.com/hackrf/">Hack RF</a></li>
+  <li><a href="https://greatscottgadgets.com/sdr/">Learn SDR with Hack RF</a></li>
+  <li><a href="https://coderwall.com/p/roldfw/getting-started-with-sdr-with-rtl2832u">Get Started with SDR - RTL-SDR</a></li>
+</ul>
+
+<h3 id="references">References</h3>
+<p><em><a href="https://www.rs-online.com/designspark/10-things-you-can-do-with-software-defined-radio">RS - What is SDR?</a></em></p>
+
+    </div>
+
+    
+<hr>
+
+<aside id="comments" class="disqus">
+  <h3><i class="icon icon-comments-o"></i> Comments</h3>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'http://bucknall.codes/blog/2017/what-is-sdr/';
+      this.page.identifier = '/blog/2017/what-is-sdr';
+    };
+    (function() {
+      var d = document,
+      s = d.createElement('script');
+      s.src = '//bucknall.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/bucknalla" target="_blank"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/AlexRBucknall" target="_blank"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://facebook.com/bucknalla" target="_blank"><i class="icon icon-facebook"></i></a></li>
+  <li><a href="https://linkedin.com/in/bucknalla" target="_blank"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>Alex Bucknall &copy; | 2018 All rights reserved | Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+  <a href="http://github.com/bucknalla" target="_blank" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#28bc2d; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+</body>
+</html>
