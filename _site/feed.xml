@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alex Bucknall</title>
+    <description>Personal Website of Alex Bucknall</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 17 May 2018 23:18:37 +0100</pubDate>
+    <lastBuildDate>Thu, 17 May 2018 23:18:37 +0100</lastBuildDate>
+    <generator>Jekyll v3.5.1</generator>
+    
+      <item>
+        <title>New Website... Again!</title>
+        <description>&lt;p&gt;I’ve been messing around with website designs that I like (again… I know) and finally settled on something simple that I like. The new site is built on top of the Jekyll framework making it easier to upload content. Hopefully the new and improved website will encourage me to write more blog posts, documenting my research and personal projects.&lt;/p&gt;
+
+&lt;p&gt;I intend to restart my blog posts; aiming to write something every week and telling myself that it’s ok to write a short blog post. I think I’ll aim for one large post and 3 smaller ones every month. Hopefully that’s not too optimistic!&lt;/p&gt;
+
+&lt;p&gt;Drop me a comment if there’s anything in particular you’d like me to discuss/explore in these blog posts, relating to FPGAs, SDRs and IoT!&lt;/p&gt;
+</description>
+        <pubDate>Thu, 17 May 2018 14:46:52 +0100</pubDate>
+        <link>http://localhost:4000/blog/2018/new-website-again/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/new-website-again/</guid>
+        
+        
+        <category>website</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>What is Software Defined Radio?</title>
+        <description>&lt;p&gt;The term, &lt;strong&gt;Software Defined Radio&lt;/strong&gt; (SDR) often gets conflated by the idea of Software Controlled Radios (SCR), which in essence are part of the control layer for an SDR but are by no means SDRs themselves. An SCR might be a radio system that is tunable or managed by software but the physical layer remains fixed in hardware. In contrast, SDRs are radios in which all or part of the physical layers (hardware) are manipulated/configured through the use of software.&lt;/p&gt;
+
+&lt;p&gt;In this blog post, I’ll dive into the what is meant by a “physical layer” further on but for now this is the layer that controls the modulation/demodulation, filtering, encoding, etc. of the receieved and/or transmitted signals. For example, a car radio might be controlled by software managing the frequencies of the user’s desired radio stations; this would be defined as a Software Controlled Radio.&lt;/p&gt;
+
+&lt;h2 id=&quot;thats-interesting-but-why-would-i-need-an-sdr&quot;&gt;That’s interesting but why would I need an SDR?&lt;/h2&gt;
+
+&lt;p&gt;SDR is interesting to a number of different types of users from academic to military application and from commercial to consumer. It might surprise you to know that you likely interact with an SDR every day, your mobile/cellular phone.&lt;/p&gt;
+
+&lt;h3 id=&quot;academic-research&quot;&gt;Academic Research&lt;/h3&gt;
+
+&lt;p&gt;This blog post hardly covers what can be done with SDR as every day new tools are frameworks are being published, offering open source implementations of current standards such as 802.11, ZigBee, LoRa and Bluetooth. Tools such as GNU Radio Companion when combined with lower cost wideband SDR hardware make it easier, faster and increasingly affordable for academics to explore with their research. My personal research interests relate to upcoming cellular standards for IoT and designing adaptive baseband layers on top of partially reconfigurable hardware (using a Xilinx Zynq SoC).&lt;/p&gt;
+
+&lt;h3 id=&quot;hobbyist-interest&quot;&gt;Hobbyist Interest&lt;/h3&gt;
+
+&lt;p&gt;Here’s a run down on some of the interesting things you can do with SDR:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Listen to Broadcast Radio (FM &amp;amp; AM)&lt;/li&gt;
+  &lt;li&gt;Set up your own HAM Radio&lt;/li&gt;
+  &lt;li&gt;Get involved with Radio Astronomy&lt;/li&gt;
+  &lt;li&gt;Track Aircraft with the Mode S Protocol&lt;/li&gt;
+  &lt;li&gt;Track Ships and other Vessels with AIS&lt;/li&gt;
+  &lt;li&gt;Build your own GSM Network&lt;/li&gt;
+  &lt;li&gt;Experiment with various other RF Protocols&lt;/li&gt;
+  &lt;li&gt;Many more!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please note that this is a none exclusive list as this hardly scratches the surface as to what can be done with SDR!&lt;/p&gt;
+
+&lt;h2 id=&quot;ok-youve-convinced-me-where-can-i-start-learning-about-sdr&quot;&gt;Ok, you’ve convinced me! Where can I start learning about SDR?&lt;/h2&gt;
+
+&lt;p&gt;Historically, SDR has had a relatively high barrier to entry for beginners as the cost point of typical open SDRs hardware and toolkits has been in the region of £1000+. Fortunately, the open source community has assembled a fantastic set of tools that support a huge variety of radios, known as GNU Radio. GNU Radio applications can be written in C++ &amp;amp; Python lanugages as well as assembled in flow diagram formats using a tool called the GNU Radio Companion. This toolkit is 100% and supports from the very low end of SDRs (~£20) all the way through to industry standard devices.&lt;/p&gt;
+
+&lt;p&gt;To get started, I’d recommend taking a look at &lt;img src=&quot;https://www.rtl-sdr.com/about-rtl-sdr/&quot; alt=&quot;RTL-SDR&quot; /&gt;, a $20 USB TV Tuner Dongle that can be used as a computer based radio scanner. This nifty device will let you play with a whole range of interesting SDR from simple amplitude &amp;amp; frequency modulation/demodulation to &lt;img src=&quot;https://blog.kroy.io/monitoring-home-power-consumption-for-less-than-25/&quot; alt=&quot;reading smart meters&quot; /&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;useful-sdr-resources&quot;&gt;Useful SDR Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://greatscottgadgets.com/hackrf/&quot;&gt;Hack RF&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://greatscottgadgets.com/sdr/&quot;&gt;Learn SDR with Hack RF&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://coderwall.com/p/roldfw/getting-started-with-sdr-with-rtl2832u&quot;&gt;Get Started with SDR - RTL-SDR&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://www.rs-online.com/designspark/10-things-you-can-do-with-software-defined-radio&quot;&gt;RS - What is SDR?&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 25 Dec 2017 16:42:24 +0000</pubDate>
+        <link>http://localhost:4000/blog/2017/what-is-sdr/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/what-is-sdr/</guid>
+        
+        <category>sdr</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Intro to Zedboard and Xilinx Zynq SoC</title>
+        <description>&lt;p&gt;As I start down the road of building complex systems with the Xilinx Zynq platform, I’ve decided to document what I’m learning from using the device as a record of what I’m doing as well as documentation for others using this PSoC (Programmable System on Chip) and tool chain.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-the-zedboard-and-the-zynq&quot;&gt;What is the Zedboard and the Zynq?&lt;/h2&gt;
+
+&lt;p&gt;The Zedboard is a Digilent Development Board for the Xilinx Zynq-7000 SoC (AP SoC). The Zynq platform is particularly interesting as it includes both a processing systems (PS) and programmable logic layer (PL). In essence, this means that the user has access to a full general purpose processor, which is accompanied by the logical fabric of an FPGA.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-will-i-be-using-it-for&quot;&gt;What will I be using it for?&lt;/h2&gt;
+
+&lt;p&gt;My interest for using the Zedboard relates to two aspects of the development board; the SoC and the FMC connector (the port on the right side of the board). I’m intending to use the Xilinx Zynq SoC as an adaptive baseband controller of a Software Defined Radio System. This is in part, to the lead up of my thesis, of which this research will help me to determine the topic.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;img src=&quot;/images/zynq.png&quot; width=&quot;400px&quot; /&gt;
+&lt;h5 align=&quot;center&quot;&gt;Zynq-7000 SoC Block Diagram — fig 1.&lt;/h5&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;who-are-these-posts-for&quot;&gt;Who are these posts for?&lt;/h2&gt;
+
+&lt;p&gt;These posts are for anyone looking at getting into programmable logic development, software defined radio or simply interested in following what I’m working on. My philosophy is that the best way to learn is to teach and hopefully by sharing these posts and tutorials, I’ll reinforce what I’ve been working on as well as create a record for my own sanity!&lt;/p&gt;
+
+&lt;h2 id=&quot;what-will-i-be-talking-about&quot;&gt;What will I be talking about?&lt;/h2&gt;
+
+&lt;p&gt;I intend to use these medium posts as a way to talk in more detail about some of the following topics.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Software Defined Radio (SDR)&lt;/li&gt;
+  &lt;li&gt;System Verilog and various hardware description languages (HDLs)&lt;/li&gt;
+  &lt;li&gt;SoC and how to utilize the power/flexibility of general purpose processing as well as the PL fabric&lt;/li&gt;
+  &lt;li&gt;A number of other related topics; Micro controllers, C/C++, Git, etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://www.zedboard.org/product/zedboard&quot;&gt;figure 1.&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 15 Dec 2017 19:19:43 +0000</pubDate>
+        <link>http://localhost:4000/blog/2017/intro-zed-zynq/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/intro-zed-zynq/</guid>
+        
+        
+        <category>zynq</category>
+        
+      </item>
+    
+  </channel>
+</rss>

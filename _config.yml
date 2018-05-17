@@ -15,37 +15,39 @@ sass:
   style: compressed # expanded
 
 # SEO settings
-title: end2end
-description: "A free Jekyll theme for download"
-keywords: "Jekyll, theme, free, download, SEO, blog, web"
-url: http://nandomoreira.me
-baseurl: "/end2end"
+title: Alex Bucknall
+description: "Personal Website of Alex Bucknall"
+keywords: "Engineering, theme, free, download, SEO, blog, web"
+url: http://bucknall.codes
+baseurl: ""
 
 google_analytics: UA-52446115-1
-repo: http://github.com/nandomoreirame/end2end
-disqus_shortname: "nandothemes"
-disqus_site_shortname: "nandothemes"
+repo: http://github.com/bucknalla
+disqus_shortname: "bucknall"
+disqus_site_shortname: "bucknall"
 
 # Author settings
 author:
-  name: Fernando Moreira
-  job: Frontend Engineer
-  bio: "Enthusiast performance, responsive design and usability, always looking for the best project and good coffee."
-  thumb: /images/author.jpg
-  email: nandomoreira.me@gmail.com
-  url: https://nandomoreira.me/
-  github: https://github.com/nandomoreirame
-  twitter: https://twitter.com/umdevux
-  facebook: https://facebook.com/umdevux
-  linkedin: https://linkedin.com/in/nandomoreirame
+  name: Alex Bucknall
+  job: PhD(c) Researcher @ WARC Lab, University of Warwick
+  bio: "45% Researcher, 45% Engineer, 10% Day Dreamer. Working on Reconfigurable Computing, Adaptive Radio Networking and the Internet of Things."
+  thumb: /images/alex.jpg
+  email: alex.bucknall@gmail.com
+  url: https://bucknall.codes
+  github: https://github.com/bucknalla
+  twitter: https://twitter.com/AlexRBucknall
+  facebook: https://facebook.com/bucknalla
+  linkedin: https://linkedin.com/in/bucknalla
 
 # navbar pages
 navbar:
   - slug: about
     title: About
-  - slug: icons
-    title: Icons
   - slug: blog
     title: Blog
+  - slug: contact
+    title: Contact
 
 exclude: ["config.rb", "src", "Gemfile", "Gemfile.lock", "package.json","README.md", "Rakefile"]
+
+future: true
