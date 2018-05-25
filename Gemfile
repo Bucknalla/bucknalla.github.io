@@ -12,7 +12,7 @@ gem "jekyll", "~>3.5.0"
 gem "rake", "~>10.5"
 gem "sass", "~>3.4"
 gem "json", "~> 2"
-
+gem "bourbon", "~>4.3"
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.

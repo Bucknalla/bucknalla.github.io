@@ -3,10 +3,11 @@ require "rubygems"
 require "tmpdir"
 require "bundler/setup"
 require "jekyll"
+require "bourbon"
 
 # Change your GitHub reponame
-GITHUB_REPONAME = "bucknall/website"
-GITHUB_REPO_BRANCH = "gh-pages"
+GITHUB_REPONAME = "Bucknalla/bucknalla.github.io"
+GITHUB_REPO_BRANCH = "master"
 
 SOURCE = "source/"
 DEST = "_site"

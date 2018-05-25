@@ -3,10 +3,10 @@
   <channel>
     <title>Alex Bucknall</title>
     <description>Personal Website of Alex Bucknall</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 17 May 2018 23:18:37 +0100</pubDate>
-    <lastBuildDate>Thu, 17 May 2018 23:18:37 +0100</lastBuildDate>
+    <link>http://bucknall.codes/</link>
+    <atom:link href="http://bucknall.codes/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 17 May 2018 23:47:32 +0100</pubDate>
+    <lastBuildDate>Thu, 17 May 2018 23:47:32 +0100</lastBuildDate>
     <generator>Jekyll v3.5.1</generator>
     
       <item>
@@ -18,8 +18,8 @@
 &lt;p&gt;Drop me a comment if there’s anything in particular you’d like me to discuss/explore in these blog posts, relating to FPGAs, SDRs and IoT!&lt;/p&gt;
 </description>
         <pubDate>Thu, 17 May 2018 14:46:52 +0100</pubDate>
-        <link>http://localhost:4000/blog/2018/new-website-again/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/new-website-again/</guid>
+        <link>http://bucknall.codes/blog/2018/new-website-again/</link>
+        <guid isPermaLink="true">http://bucknall.codes/blog/2018/new-website-again/</guid>
         
         
         <category>website</category>
@@ -77,8 +77,8 @@
 &lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://www.rs-online.com/designspark/10-things-you-can-do-with-software-defined-radio&quot;&gt;RS - What is SDR?&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 25 Dec 2017 16:42:24 +0000</pubDate>
-        <link>http://localhost:4000/blog/2017/what-is-sdr/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/what-is-sdr/</guid>
+        <link>http://bucknall.codes/blog/2017/what-is-sdr/</link>
+        <guid isPermaLink="true">http://bucknall.codes/blog/2017/what-is-sdr/</guid>
         
         <category>sdr</category>
         
@@ -122,8 +122,8 @@
 &lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://www.zedboard.org/product/zedboard&quot;&gt;figure 1.&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 15 Dec 2017 19:19:43 +0000</pubDate>
-        <link>http://localhost:4000/blog/2017/intro-zed-zynq/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/intro-zed-zynq/</guid>
+        <link>http://bucknall.codes/blog/2017/intro-zed-zynq/</link>
+        <guid isPermaLink="true">http://bucknall.codes/blog/2017/intro-zed-zynq/</guid>
         
         
         <category>zynq</category>
