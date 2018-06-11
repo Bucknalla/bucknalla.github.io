@@ -36,7 +36,7 @@ The Fin has a square profile of 90 mm by 90 mm with a height of approx. 25 mm, w
 
 I understand that Resin will be selling their own cases, with variants including cases with DIN and VESA mounts. I look forward to seeing the quality of their offering but would like to see something with IP rated water proofing. It'd be ideal to mount a Fin onto an external wall or pole, exposed to weather conditions, to support outside deployments.
 
-*Update - the [Resin Store](https://store.resin.io) now has listings for the VESA and DIN cases as well as the Fins devices.*
+<!-- *Update - the [Resin Store](https://store.resin.io) now has listings for the VESA and DIN cases as well as the Fins devices.* -->
 
 <div style="text-align:center">
 <img src="/images/resin-fin-001.JPG" width="400px">
