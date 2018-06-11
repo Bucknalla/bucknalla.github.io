@@ -97,7 +97,7 @@ As mentioned earlier, the Resin Fin has the standard offering of Dual-band 802.1
 
 I've included a Huawei ME909s-120 Cellular Modem (Mini PCI-E) with this blog post as cellular connectivity is an important part of the Fin's offering. The ME909s-120 is an LTE capable modem with support for 8 LTE bands with up to 150 Mbps downlink rate.
 
-I was impressed by how easy it was to get up and running with this modem. As soon as I had added the config for [Network Manager](https://docs.resin.io/reference/resinOS/network/2.x/) (which works in conjunction with [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)), the Fin immediately picked it up and started transmitting data. I've included the config file below:
+I was impressed by how easy it was to get up and running with this modem. As soon as I had added the config for [Network Manager](https://docs.resin.io/reference/resinOS/network/2.x/) (which works in conjunction with [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)), the Fin immediately picked it up and started transmitting data. I've included the config file for using [Hologram's](https://hologram.io/) Network below:
 
 {% highlight bash %}[connection]
 id=resin-cellular
