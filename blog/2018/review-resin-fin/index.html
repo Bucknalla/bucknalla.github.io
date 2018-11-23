@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Resin Fin - Initial Thoughts and Impressions</title>
+<meta name="description" content="I’ve been lucky enough to get my hands on an early production version of the Resin Fin, as I’m working on a gateway-like platform for a client. I was intrigu...">
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="canonical" href="http://bucknall.codes/blog/2018/review-resin-fin/">
+<link rel="alternate" type="application/rss+xml" title="Alex Bucknall" href="http://bucknall.codes/feed.xml" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52446115-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <input type="checkbox" id="toggleNavbar">
+    <h1 class="logo"><a href="/">Bucknall<span>codes</span></a></h1>
+    <label for="toggleNavbar" role="button" class="toggle-navbar-button">
+      <i class="icon icon-menu"></i>
+      <i class="icon icon-cross"></i>
+    </label>
+    <nav class="navbar">
+      <ul>
+        <li><a href="/" title="Home">Home</a></li>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+          <li><a href="/contact" title="Contact">Contact</a></li>
+        
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-rss"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main class="main-container">
+  <div class="container">
+    <style>
+body .gist .highlight {
+    background: #272822;
+}
+body .gist .blob-num,
+body .gist .blob-code-inner,
+body .gist .pl-s2,
+body .gist .pl-stj {
+    color: #f8f8f2;
+}
+body .gist .pl-c1 {
+    color: #ae81ff;
+}
+body .gist .pl-enti {
+    color: #a6e22e;
+    font-weight: 700;
+}
+body .gist .pl-st {
+    color: #66d9ef;
+}
+body .gist .pl-mdr {
+    color: #66d9ef;
+    font-weight: 400;
+}
+body .gist .pl-ms1 {
+    background: #fd971f;
+}
+body .gist .pl-c,
+body .gist .pl-c span,
+body .gist .pl-pdc {
+    color: #75715e;
+    font-style: italic;
+}
+body .gist .pl-cce,
+body .gist .pl-cn,
+body .gist .pl-coc,
+body .gist .pl-enc,
+body .gist .pl-ens,
+body .gist .pl-kos,
+body .gist .pl-kou,
+body .gist .pl-mh .pl-pdh,
+body .gist .pl-mp,
+body .gist .pl-mp1 .pl-sf,
+body .gist .pl-mq,
+body .gist .pl-pde,
+body .gist .pl-pse,
+body .gist .pl-pse .pl-s2,
+body .gist .pl-mp .pl-s3,
+body .gist .pl-smi,
+body .gist .pl-stp,
+body .gist .pl-sv,
+body .gist .pl-v,
+body .gist .pl-vi,
+body .gist .pl-vpf,
+body .gist .pl-mri,
+body .gist .pl-va,
+body .gist .pl-vpu {
+    color: #66d9ef;
+}
+body .gist .pl-cos,
+body .gist .pl-ml,
+body .gist .pl-pds,
+body .gist .pl-s,
+body .gist .pl-s1,
+body .gist .pl-sol {
+    color: #e6db74;
+}
+body .gist .pl-e,
+body .gist .pl-ef,
+body .gist .pl-en,
+body .gist .pl-enf,
+body .gist .pl-enm,
+body .gist .pl-entc,
+body .gist .pl-entm,
+body .gist .pl-eoac,
+body .gist .pl-eoac .pl-pde,
+body .gist .pl-eoi,
+body .gist .pl-mai .pl-sf,
+body .gist .pl-mm,
+body .gist .pl-pdv,
+body .gist .pl-som,
+body .gist .pl-sr,
+body .gist .pl-vo {
+    color: #a6e22e;
+}
+body .gist .pl-ent,
+body .gist .pl-eoa,
+body .gist .pl-eoai,
+body .gist .pl-eoai .pl-pde,
+body .gist .pl-k,
+body .gist .pl-ko,
+body .gist .pl-kolp,
+body .gist .pl-mc,
+body .gist .pl-mr,
+body .gist .pl-ms,
+body .gist .pl-s3,
+body .gist .pl-smc,
+body .gist .pl-smp,
+body .gist .pl-sok,
+body .gist .pl-sra,
+body .gist .pl-src,
+body .gist .pl-sre {
+    color: #f92672;
+}
+body .gist .pl-mb,
+body .gist .pl-pdb {
+    color: #e6db74;
+    font-weight: 700;
+}
+body .gist .pl-mi,
+body .gist .pl-pdi {
+    color: #f92672;
+    font-style: italic;
+}
+body .gist .pl-pdc1,
+body .gist .pl-scp {
+    color: #ae81ff;
+}
+body .gist .pl-sc,
+body .gist .pl-sf,
+body .gist .pl-mo,
+body .gist .pl-entl {
+    color: #fd971f;
+}
+body .gist .pl-mi1,
+body .gist .pl-mdht {
+    color: #a6e22e;
+    background: rgba(0, 64, 0, .5);
+}
+body .gist .pl-md,
+body .gist .pl-mdhf {
+    color: #f92672;
+    background: rgba(64, 0, 0, .5);
+}
+body .gist .pl-mdh,
+body .gist .pl-mdi {
+    color: #a6e22e;
+    font-weight: 400;
+}
+body .gist .pl-ib,
+body .gist .pl-id,
+body .gist .pl-ii,
+body .gist .pl-iu {
+    background: #a6e22e;
+    color: #272822;
+}
+body .gist .gist-meta {
+    display: none;
+}
+</style>
+
+<article role="article" class="post">
+
+  <div class="card">
+    <header class="post-header">
+      <h1 class="post-title">Resin Fin - Initial Thoughts and Impressions</h1>
+      <em class="post-meta">
+        <time>Jun 9, 2018</time>
+      </em>
+    </header>
+
+    <div class="post-content">
+      
+        <figure class="post-thumbnail ">
+          <img src="/images/resin-fin.jpg" alt="Resin Fin - Initial Thoughts and Impressions">
+        </figure>
+      
+      <p>I’ve been lucky enough to get my hands on an early production version of the <a href="https://resin.io/blog/introducing-project-fin-a-board-for-fleet-owners/">Resin Fin</a>, as I’m working on a gateway-like platform for a client. I was intrigued when I first heard that Resin was making their own hardware as industrialised IoT platforms, especially those using the Raspberry Pi (RPi) Compute Module, are few and far between.</p>
+
+<p>Resin has included some interesting features with the Fin, such as the addition of a Samsung Artik 020 co-processor as well as a mini PCI-E expansion socket (along with a nano-sim reader). Although I’ve had the Fin for a couple of weeks now, I intend to follow up this blog post with more details when Resin releases their public documentation for the device as there are still some pre-production complexities with software and set up.</p>
+
+<p>Please take note that this is an initial impressions and not a my final opinion due to this being preproduction device.</p>
+
+<h4 id="what-is-resin">What is Resin?</h4>
+
+<p>For those reading this initial impressions post and are unfamiliar with <a href="https://resin.io/">Resin</a>, Resin is a scalable platform for managing fleets of IoT devices. It’s built around a containerized Linux operating system that runs on deployed devices (think Docker for IoT). This allows you to remotely implement version control, monitoring and provisioning across a fleet of devices whilst maintaining a high level of reliability, inherent from the containerization. As all the application that you deploy are loaded into containers, you can maintain a code base across a range of different hardware so long as it has support for <a href="https://resinos.io/">Resin OS</a>. Additionally, this means that devices are almost impossible to accidentally bricked in the field as applications are restricted to their own containers.</p>
+
+<p>Although it’s a little more to it than in the image below, this gives a good understanding of the steps involved with deploying code and the feedback loop between hardware and the programmer.</p>
+
+<div style="text-align:center">
+<img src="/images/resin-flow.jpeg" width="600px" />
+<h5 align="center">Resin Workflow (credit - Resin.io)</h5>
+</div>
+
+<p>The Fin is Resin’s own take on what the hardware that powers Resin OS should look like. Typically, their examples and documentation are demonstrated on Raspberry Pi B devices, which while great for cheap and simple deployments, often isn’t fit for production scenarios.</p>
+
+<h2 id="the-hardware">The Hardware</h2>
+
+<p>From a hardware perspective, the Resin Fin offers a number of interesting technologies with an emphasis its on gateway-esq features. It’s clear from the Fin’s offering, that Resin sees this platform as an enabler of dependant devices (e.g. microcontrollers that use the Fin as a communication hub). By default, the Fin offers Dual-band 2.4 &amp; 5 GHz support as well as Bluetooth 4.2 - good all around local area connectivity.</p>
+
+<h4 id="form-factor">Form Factor</h4>
+
+<p>The Fin has a square profile of 90 mm by 90 mm with a height of approx. 25 mm, when the compute module is attached. I was surprised upon first unpacking the device as it was considerably smaller than the impression given by Resin’s blog post.</p>
+
+<p>I understand that Resin will be selling their own cases, with variants including cases with DIN and VESA mounts. I look forward to seeing the quality of their offering but would like to see something with IP rated water proofing. It’d be ideal to mount a Fin onto an external wall or pole, exposed to weather conditions, to support outside deployments.</p>
+
+<!-- *Update - the [Resin Store](https://store.resin.io) now has listings for the VESA and DIN cases as well as the Fins devices.* -->
+
+<div style="text-align:center">
+<img src="/images/resin-fin-001.JPG" width="400px" />
+<h5 align="center">Top View</h5>
+</div>
+
+<h4 id="power-management">Power Management</h4>
+
+<p>The Resin Fin is an industrialised RPi Compute platform and this is reflected with Resin’s choice of power delivery. The Fin can take between 6 V to 30 V on either a barrel jack connector or phoenix connector, making it suitable for the kinds of voltages that you might find on a DIN rail (e.g. a typical PLC runs on 24 V DC).</p>
+
+<p>Resin highlights features for power conservation including using the Artik Co-Processor for powering down the Compute Module as well as providing commands to power down various radio interfaces. Although interesting features, I personally see the Fin as an always on system more suited for gateway and high performance activities; I’ll touch more on this later.</p>
+
+<div style="text-align:center">
+<img src="/images/resin-fin-004.JPG" width="400px" />
+<h5 align="center">Power Connectors</h5>
+</div>
+
+<p>Note - <i style="color:#28BC2D">although the Fin has a micro USB port, you cannot use this to power the device as it is for debug purposes.</i></p>
+
+<h4 id="io-and-expansion">I/O and Expansion</h4>
+
+<p>The Fin has both the standard selection of I/O that you’d expect from a typical RPi device as well as a few special features too. As you’d expect, it has a <em>3.5mm output jack</em>, the iconic <em>RPi HAT connector</em>, an <em>HDMI port</em>, 2x <em>USB 2.0 ports</em>, <em>10/100 Ethernet</em> as well as <em>display and camera connectors</em>. The Fin provides a user customised RGB LED, which I’ve found useful for denoting the device’s networking status (Red for disconnected, blue for WiFi, Green for Ethernet, etc.) as well as user control over all the status LEDs on the board. The GPIO for the Artik 020 module are also broken out into a male header on the device. This includes SPI and I2C buses, Debug UART as well as 8 GPIO/ADC pins. There is also an on board real time clock connected on the I2C bus accessible by both the Compute Module and the Artik 020.</p>
+
+<p>Additionally there’s also a Mini PCI-E socket exposed on the underside of the Fin, which I’ve used for a cellular modem but more on that later!</p>
+
+<h4 id="compute-module-3-lite">Compute Module 3 Lite</h4>
+
+<p>The Compute Module 3 Lite (CM3L) is a nice feature for the Fin as it provides an increased longevity for support as the CM3L can be swapped out for new modules as and when the Raspberry Pi Foundation releases them. The reason that Resin has chosen to use the Lite variant of the CM3 is that it means they can offer different variations of the Fin with support for 8 GB up to 64 GB of eMMC 5.1 Flash Memory, depending on the user’s use case. The CM3L uses the BCM2837, the same Broadcom chip found in the RPi 3, which is a quad core ARMv8 cluster, clocked at 1.2 GHz with its GPU at 400 MHz.</p>
+
+<div style="text-align:center">
+<img src="/images/resin-fin-002.JPG" width="400px" />
+<h5 align="center">Rear View (CM3L)</h5>
+</div>
+
+<h4 id="artik-020-co-processor">Artik 020 Co-Processor</h4>
+
+<p>The <a href="https://www.artik.io/modules/artik-020/">Artik 020</a> co-processor is an interesting addition to the Fin as it allows for the entire compute module to be powered down and up, programmatically. The Artik is also on the same I2C bus as the Fin’s Real Time Clock (RTC) and can use this to track sleep timings.</p>
+
+<p>I’m yet to use the Artik 020 in an application but I could see this being useful if using the Fin in a power conservative situation such as relying on a battery + solar power solution. It might also find use with using the Artik’s on board Bluetooth module for detecting the presence of external devices and using this as an interrupt to wake the Fin.</p>
+
+<p>Resin has mentioned that they are implementing <a href="https://github.com/firmata/protocol">firmata</a> support for the Artik to allow it to be controlled via a client library on the CM3L. This would make the process of it much more simple as all of the control could sit within the Resin OS user application container, rather than having to reprogram the Artik at each instance.</p>
+
+<div style="text-align:center">
+<img src="/images/resin-fin-006.JPG" width="400px" />
+<h5 align="center">Artik 020 Co-Processor</h5>
+</div>
+
+<p>Although I can see its uses, I don’t particularity envision the resin as a device that would utilise a sleep functionality; to me it’s better suited as an always on hub for relaying information back up to the cloud. Resin OS is most powerful when it can be updated immediately and instantly to any user changes/modifications. In my mind, resin devices are better as edge compute platforms or information relays rather than data aggregation which is better left to dependent devices such as microcontrollers, which then might use a Resin device as a back haul for their own telemetry.</p>
+
+<h4 id="networking">Networking</h4>
+
+<p>As mentioned earlier, the Resin Fin has the standard offering of Dual-band 802.11ac/a/b/g/n with both 2.4 &amp; 5GHz support as well as Bluetooth 4.2. I appreciate that they have provide a uFL connector for the WiFi/Bluetooth radio; as you might expect the Fin to be crammed into a PLC shelf or next to RF noisy equipment, where a decent antenna would be essential. You can toggle between this and the on board antenna via a switch on the PCB.</p>
+
+<div style="text-align:center">
+<img src="/images/resin-fin-003.JPG" width="400px" />
+<h5 align="center">Rear View (CM3L + Mini PCI-E Modem)</h5>
+</div>
+
+<p>I’ve included a Huawei ME909s-120 Cellular Modem (Mini PCI-E) with this blog post as cellular connectivity is an important part of the Fin’s offering. The ME909s-120 is an LTE capable modem with support for 8 LTE bands with up to 150 Mbps downlink rate.</p>
+
+<p>I was impressed by how easy it was to get up and running with this modem. As soon as I had added the config for <a href="https://docs.resin.io/reference/resinOS/network/2.x/">Network Manager</a> (which works in conjunction with <a href="https://www.freedesktop.org/wiki/Software/ModemManager/">ModemManager</a>), the Fin immediately picked it up and started transmitting data. I’ve included the config file for using <a href="https://hologram.io/">Hologram’s</a> Network below:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span><span class="o">[</span>connection<span class="o">]</span>
+<span class="nv">id</span><span class="o">=</span>resin-cellular
+<span class="nv">type</span><span class="o">=</span>gsm
+<span class="nv">autoconnect</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="o">[</span>gsm<span class="o">]</span>
+<span class="nv">apn</span><span class="o">=</span>hologram
+<span class="nv">number</span><span class="o">=</span>*99#
+
+<span class="o">[</span>serial<span class="o">]</span>
+<span class="nv">baud</span><span class="o">=</span><span class="m">115200</span>
+
+<span class="o">[</span>ipv4<span class="o">]</span>
+<span class="nv">method</span><span class="o">=</span>auto
+
+<span class="o">[</span>ipv6<span class="o">]</span>
+addr-gen-mode<span class="o">=</span>stable-privacy
+<span class="nv">method</span><span class="o">=</span>ignore</code></pre></figure>
+
+<p>Be cautious that this Network Manager config will immediately fire up the Cellular Modem begin transmitting your data over 3G/4G. This will spend your data allowance very quickly if you’re not careful!</p>
+
+<p>It’s also worth mentioning that the Artik 020 has it’s own Bluetooth Modem and can use this for Bluetooth Low Energy (BLE) applications, independent of the CM3L.</p>
+
+<h2 id="the-software">The Software</h2>
+
+<p>From a software perspective, the Fin is basically the same device as any other device that’s running Resin OS and that’s the beauty of it! It shouldn’t be any different from a software perspective as all Resin OS devices abstract their hardware through the wonders of the <a href="https://www.balena.io/">Balena</a> container engine.</p>
+
+<h4 id="the-setup-process">The Setup Process</h4>
+
+<p>I’m cautious to comment on this as I understand that the Fin is still in development and that the Software/Set up Guides are not yet publicly exposed. I did find this somewhat convoluted and the instructions to be a little sparse but again, I have a pre-production device so this is to be expected!</p>
+
+<p>To set the Fin up, I had to put the device into debug mode (connecting up the DBG micro USB port) which exposes the boot partition of the compute module. To do this on Linux (Debian), I was required to install the Raspberry Pi Foundation’s “<a href="https://github.com/raspberrypi/usbboot">usbboot</a>” tool which is designed to access the boot partitions of the Compute Modules. Although a little confusing at first as to what was going on, this worked flawlessly and I was almost immediately granted access to the boot partitions on the device. Below are the commands required for usbboot under Linux.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ git clone --depth<span class="o">=</span><span class="m">1</span> https://github.com/raspberrypi/usbboot
+$ <span class="nb">cd</span> usbboot
+$ sudo apt-get install libusb-1.0-0-dev
+$ make
+$ sudo ./rpiboot</code></pre></figure>
+
+<p>I’m aware that this usbboot functionality is being built into Resin’s <a href="https://etcher.io/">Etcher</a> tool, so I withhold my criticism of this as set up tool, as Etcher is a fantastic tool for flashing OS images to SD cards and other types of storage media (i.e. it just works!). At present, you are required to used usbboot for the Fin to appear as a selectable target location under etcher, so run usbboot and then fire up Etcher and you should see your Fin device.</p>
+
+<p>I did have a minor hiccup when setting the WLAN up as my Fin started up with its wireless interface initially labelled as mlan0 and with the interface set to down. However, after renaming the interface and through a couple of bash commands, I was able to get that working correctly. If you’re struggling with this, drop a comment below or reach out to me on twitter and I’ll try to help you solve this issue.</p>
+
+<h4 id="resin-os">Resin OS</h4>
+
+<p>I won’t touch on too much detail here as I briefly explained what Resin is and how it works in the introduction - which on its own, doesn’t really do justice to completely describing how Resin works! I may have to do a more detailed write up in future blog posts.</p>
+
+<p>Although intended for use with Resin OS, there’s nothing dictating that this hardware can only used with Resin’s tools; you’re more than welcome to put Raspbian, Ubuntu Mate or any other RPi distribution of your choice on there!</p>
+
+<div style="text-align:center">
+<img src="/images/resin-io-001.png" width="600px" />
+<h5 align="center">My Application - Resin.io</h5>
+</div>
+
+<p>What’s nice about resin is that all it takes is a simple git push and you can iterate on the version of code running on your device. Once you’ve followed resin’s installation instructions, loaded Resin OS onto your device and added your git remote for your resin branch, all you need is the following:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>$ git add . 
+$ git commit -m <span class="s2">&quot;Your commit to build for Resin&quot;</span> 
+$ git push resin master</code></pre></figure>
+
+<p>And your code is pushed/built to a docker container at Resin.io before being forward onto your Resin OS device (if the image builds and deploys successfully). Resin does a nice job of informing you of build issues in its command line tool and will help you to debug any build failures.</p>
+
+<h5 id="feature-requests">Feature Requests</h5>
+
+<p>A feature that I’d like to see from Resin (which amazingly, they’ve already added to their public <a href="https://trello.com/b/9CSzdCXQ/resin-product-roadmap">roadmap</a>!) is the ability to check the size of an image delta (the difference in code between two commits) before pushing it to a device. With my scenario in particular, data consumption is an important aspect of the product; I need to know how much data the device will be consuming and how to keep this to a minimum. Pushing entire docker images to a device is something that I want to take place over WiFi rather than cellular and if I do need to push over cellular I need to know how much data it will consume.</p>
+
+<h2 id="closing-thoughts--impressions">Closing Thoughts &amp; Impressions</h2>
+
+<p>Overall, I’m very impressed with the Fin and I think Resin have done a great job positioning its features and use case towards a clear gap in the market. The Fin will inevitably find its way to the maker audience but I think it’ll find a nice home in many industrial use cases. The Fin has all the right tools for supporting dependent device applications with its capable 2.4 &amp; 5 GHz connectivity options. Combining this with the Fin’s ability to connect mini-PCIE radio interfaces (LoRaWAN, LTE, Zigbee, etc.) and Resin’s powerful  OS means that the Fin is a also very capable gateway. I’m eager to see how Resin build the product with documentation and support as they’ve already laid the foundations for solid industrial applications.</p>
+
+<p>I’m excited to see where the Fin ends up being deployed and I can already see application spaces such as the <a href="https://www.thethingsnetwork.org/">thingsnetwork</a> being a great examples. If you want to dive into using the Fin as a gateway, I’d recommend checking out the <a href="https://github.com/resin-io/edge-node-manager">Edge Node Manager</a> as well as an image I’ve written for <a href="https://github.com/Bucknalla/resin-pycom-ota">Firmware Over the Air with Pycom devices</a>.</p>
+
+    </div>
+
+    
+<hr>
+
+<aside id="comments" class="disqus">
+  <h3><i class="icon icon-comments-o"></i> Comments</h3>
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'http://bucknall.codes/blog/2018/review-resin-fin/';
+      this.page.identifier = '/blog/2018/review-resin-fin';
+    };
+    (function() {
+      var d = document,
+      s = d.createElement('script');
+      s.src = '//bucknall.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</aside>
+
+
+  </div>
+
+</article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/bucknalla" target="_blank"><i class="icon icon-github"></i></a></li>
+  <li><a href="https://twitter.com/AlexRBucknall" target="_blank"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="https://linkedin.com/in/bucknalla" target="_blank"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>Alex Bucknall &copy; | 2018 All rights reserved | Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small>
+    </p>
+  </div>
+</footer>
+
+
+  <a href="http://github.com/bucknalla" target="_blank" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#28bc2d; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+</body>
+</html>

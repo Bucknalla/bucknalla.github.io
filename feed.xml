@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alex Bucknall</title>
+    <description>Personal Website of Alex Bucknall</description>
+    <link>http://bucknall.codes/</link>
+    <atom:link href="http://bucknall.codes/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 23 Nov 2018 10:42:05 +0000</pubDate>
+    <lastBuildDate>Fri, 23 Nov 2018 10:42:05 +0000</lastBuildDate>
+    <generator>Jekyll v3.5.1</generator>
+    
+      <item>
+        <title>BalenaOS - Connecting to Eduroam</title>
+        <description>&lt;h1 id=&quot;balenaosconnecting-to-eduroam&quot;&gt;BalenaOS — Connecting to Eduroam&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://balena.io/&quot;&gt;Balena&lt;/a&gt; is an awesome way to manage a distributed fleet of IoT devices, as it brings modern tools like version control and git into IoT deployment. This is a short post to help you get started with balenaOS on university WLAN networks (802.11.X) such as &lt;a href=&quot;https://www.eduroam.org/&quot;&gt;Eduroam&lt;/a&gt;, using the balena’s built-in network manager tool, &lt;a href=&quot;https://developer.gnome.org/NetworkManager/stable/&quot;&gt;nm&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;BalenaOS uses nm to manage networking interfaces and devices. In order to get this working on your own device (Raspberry Pi, &lt;a href=&quot;http://balena.io/fin&quot;&gt;BalenaFin&lt;/a&gt;, etc.), you’ll need to supply nm with a connection file. This file is used by nm to prepare your network device (in this case WLAN) for scanning and connecting to your specified network.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;It’s also worth noting that you can manage Ethernet and Cellular interfaces with nm!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to configure this file, you should:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Mount your device’s file system&lt;/strong&gt;, i.e. sd card for the Raspberry Pi or eMMC flash for the balenaFin.&lt;/li&gt;
+  &lt;li&gt;Navigate to “&lt;em&gt;/resin-boot/system-connections&lt;/em&gt;”&lt;/li&gt;
+  &lt;li&gt;Open the example config file “resin-wifi-01” within a text editor of your choice as this is the file that we’ll edit for our own network connection&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This file should look something like the example connection file as shown below.&lt;/p&gt;
+
+&lt;h3 id=&quot;generic-example-connection-file-for-wpa&quot;&gt;Generic Example Connection File for WPA&lt;/h3&gt;
+
+&lt;script src=&quot;https://gist.github.com/Bucknalla/11e8e799f521dd4f1129174a066e614a.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;If you entered your network settings from &lt;a href=&quot;https://www.balena.io/cloud/&quot;&gt;balenaCloud&lt;/a&gt;, you should see some of the fields already filled in with your details.&lt;/p&gt;
+
+&lt;p&gt;This is great if you’re on your home network and don’t need to worry about enterprise networks. However, this won’t get you connected to Eduroam. For that, you’ll need to add some additional details about your specific network and include the required certificates. Below is an example for connecting to the University of Warwick’s Eduroam network. Although many universities will have a very similar config file, you may need to check with your IT services for specific details (&lt;em&gt;Ask for how to connect to Ubuntu&lt;/em&gt;) but it’s worth trying this config first.&lt;/p&gt;
+
+&lt;h3 id=&quot;example-connection-file-for-eduroam-at-the-university-of-warwick&quot;&gt;Example Connection File for Eduroam at the University of Warwick&lt;/h3&gt;
+
+&lt;script src=&quot;https://gist.github.com/Bucknalla/bc04a051622a9bfe140ac38242d3b06e.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;You’ll notice that you’re required to supply an identity which is typically your university ID (this may be your email address) and associated password. You may also need to find out which certificate that your network requires. In my case, I’m required to locate to the &lt;strong&gt;QuoVadis_Root_CA_2.pem certificate&lt;/strong&gt;, which can be found in this location, “&lt;em&gt;/etc/ssl/certs/QuoVadis_Root_CA_2.pem&lt;/em&gt;”.&lt;/p&gt;
+
+&lt;p&gt;Once you’ve made your edits:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Save the file&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Safely eject&lt;/strong&gt; your sd card/eMMC from your system&lt;/li&gt;
+  &lt;li&gt;Next, &lt;strong&gt;remount it&lt;/strong&gt; on to your IoT device&lt;/li&gt;
+  &lt;li&gt;Finally, &lt;strong&gt;reboot the device&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you’re using balenaCloud, it should appear as online on your dashboard, within a few minutes. If you’re not using balenaCloud, you can look for visual indicators on the device to see if it’s connected to a network.&lt;/p&gt;
+
+&lt;p&gt;A repeating pattern of &lt;strong&gt;4 short flashes&lt;/strong&gt; from the &lt;strong&gt;ACT LED&lt;/strong&gt; will signify that your device cannot reach a network (this applies to the Raspberry Pi and balenaFin, other devices may vary).&lt;/p&gt;
+
+&lt;p&gt;You may wish to add additional setting to your network configuration and may want to check out the &lt;a href=&quot;https://developer.gnome.org/NetworkManager/stable/&quot;&gt;Gnome Developer docs&lt;/a&gt; for more settings and options for nm.&lt;/p&gt;
+
+&lt;p&gt;If you’re unsure of how to get started with your device or want to take this further, check out the &lt;a href=&quot;https://balena.io/docs&quot;&gt;balena docs&lt;/a&gt; or post your question over on the &lt;a href=&quot;https://balena.io/forums&quot;&gt;forums&lt;/a&gt;!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 23 Nov 2018 09:23:24 +0000</pubDate>
+        <link>http://bucknall.codes/blog/2018/balenaos-eduroam/</link>
+        <guid isPermaLink="true">http://bucknall.codes/blog/2018/balenaos-eduroam/</guid>
+        
+        <category>balena</category>
+        
+        <category>iot</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Resin Fin - Initial Thoughts and Impressions</title>
+        <description>&lt;p&gt;I’ve been lucky enough to get my hands on an early production version of the &lt;a href=&quot;https://resin.io/blog/introducing-project-fin-a-board-for-fleet-owners/&quot;&gt;Resin Fin&lt;/a&gt;, as I’m working on a gateway-like platform for a client. I was intrigued when I first heard that Resin was making their own hardware as industrialised IoT platforms, especially those using the Raspberry Pi (RPi) Compute Module, are few and far between.&lt;/p&gt;
+
+&lt;p&gt;Resin has included some interesting features with the Fin, such as the addition of a Samsung Artik 020 co-processor as well as a mini PCI-E expansion socket (along with a nano-sim reader). Although I’ve had the Fin for a couple of weeks now, I intend to follow up this blog post with more details when Resin releases their public documentation for the device as there are still some pre-production complexities with software and set up.&lt;/p&gt;
+
+&lt;p&gt;Please take note that this is an initial impressions and not a my final opinion due to this being preproduction device.&lt;/p&gt;
+
+&lt;h4 id=&quot;what-is-resin&quot;&gt;What is Resin?&lt;/h4&gt;
+
+&lt;p&gt;For those reading this initial impressions post and are unfamiliar with &lt;a href=&quot;https://resin.io/&quot;&gt;Resin&lt;/a&gt;, Resin is a scalable platform for managing fleets of IoT devices. It’s built around a containerized Linux operating system that runs on deployed devices (think Docker for IoT). This allows you to remotely implement version control, monitoring and provisioning across a fleet of devices whilst maintaining a high level of reliability, inherent from the containerization. As all the application that you deploy are loaded into containers, you can maintain a code base across a range of different hardware so long as it has support for &lt;a href=&quot;https://resinos.io/&quot;&gt;Resin OS&lt;/a&gt;. Additionally, this means that devices are almost impossible to accidentally bricked in the field as applications are restricted to their own containers.&lt;/p&gt;
+
+&lt;p&gt;Although it’s a little more to it than in the image below, this gives a good understanding of the steps involved with deploying code and the feedback loop between hardware and the programmer.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;img src=&quot;/images/resin-flow.jpeg&quot; width=&quot;600px&quot; /&gt;
+&lt;h5 align=&quot;center&quot;&gt;Resin Workflow (credit - Resin.io)&lt;/h5&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The Fin is Resin’s own take on what the hardware that powers Resin OS should look like. Typically, their examples and documentation are demonstrated on Raspberry Pi B devices, which while great for cheap and simple deployments, often isn’t fit for production scenarios.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-hardware&quot;&gt;The Hardware&lt;/h2&gt;
+
+&lt;p&gt;From a hardware perspective, the Resin Fin offers a number of interesting technologies with an emphasis its on gateway-esq features. It’s clear from the Fin’s offering, that Resin sees this platform as an enabler of dependant devices (e.g. microcontrollers that use the Fin as a communication hub). By default, the Fin offers Dual-band 2.4 &amp;amp; 5 GHz support as well as Bluetooth 4.2 - good all around local area connectivity.&lt;/p&gt;
+
+&lt;h4 id=&quot;form-factor&quot;&gt;Form Factor&lt;/h4&gt;
+
+&lt;p&gt;The Fin has a square profile of 90 mm by 90 mm with a height of approx. 25 mm, when the compute module is attached. I was surprised upon first unpacking the device as it was considerably smaller than the impression given by Resin’s blog post.&lt;/p&gt;
+
+&lt;p&gt;I understand that Resin will be selling their own cases, with variants including cases with DIN and VESA mounts. I look forward to seeing the quality of their offering but would like to see something with IP rated water proofing. It’d be ideal to mount a Fin onto an external wall or pole, exposed to weather conditions, to support outside deployments.&lt;/p&gt;
+
+&lt;!-- *Update - the [Resin Store](https://store.resin.io) now has listings for the VESA and DIN cases as well as the Fins devices.* --&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;img src=&quot;/images/resin-fin-001.JPG&quot; width=&quot;400px&quot; /&gt;
+&lt;h5 align=&quot;center&quot;&gt;Top View&lt;/h5&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;power-management&quot;&gt;Power Management&lt;/h4&gt;
+
+&lt;p&gt;The Resin Fin is an industrialised RPi Compute platform and this is reflected with Resin’s choice of power delivery. The Fin can take between 6 V to 30 V on either a barrel jack connector or phoenix connector, making it suitable for the kinds of voltages that you might find on a DIN rail (e.g. a typical PLC runs on 24 V DC).&lt;/p&gt;
+
+&lt;p&gt;Resin highlights features for power conservation including using the Artik Co-Processor for powering down the Compute Module as well as providing commands to power down various radio interfaces. Although interesting features, I personally see the Fin as an always on system more suited for gateway and high performance activities; I’ll touch more on this later.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;img src=&quot;/images/resin-fin-004.JPG&quot; width=&quot;400px&quot; /&gt;
+&lt;h5 align=&quot;center&quot;&gt;Power Connectors&lt;/h5&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note - &lt;i style=&quot;color:#28BC2D&quot;&gt;although the Fin has a micro USB port, you cannot use this to power the device as it is for debug purposes.&lt;/i&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;io-and-expansion&quot;&gt;I/O and Expansion&lt;/h4&gt;
+
+&lt;p&gt;The Fin has both the standard selection of I/O that you’d expect from a typical RPi device as well as a few special features too. As you’d expect, it has a &lt;em&gt;3.5mm output jack&lt;/em&gt;, the iconic &lt;em&gt;RPi HAT connector&lt;/em&gt;, an &lt;em&gt;HDMI port&lt;/em&gt;, 2x &lt;em&gt;USB 2.0 ports&lt;/em&gt;, &lt;em&gt;10/100 Ethernet&lt;/em&gt; as well as &lt;em&gt;display and camera connectors&lt;/em&gt;. The Fin provides a user customised RGB LED, which I’ve found useful for denoting the device’s networking status (Red for disconnected, blue for WiFi, Green for Ethernet, etc.) as well as user control over all the status LEDs on the board. The GPIO for the Artik 020 module are also broken out into a male header on the device. This includes SPI and I2C buses, Debug UART as well as 8 GPIO/ADC pins. There is also an on board real time clock connected on the I2C bus accessible by both the Compute Module and the Artik 020.&lt;/p&gt;
+
+&lt;p&gt;Additionally there’s also a Mini PCI-E socket exposed on the underside of the Fin, which I’ve used for a cellular modem but more on that later!&lt;/p&gt;
+
+&lt;h4 id=&quot;compute-module-3-lite&quot;&gt;Compute Module 3 Lite&lt;/h4&gt;
+
+&lt;p&gt;The Compute Module 3 Lite (CM3L) is a nice feature for the Fin as it provides an increased longevity for support as the CM3L can be swapped out for new modules as and when the Raspberry Pi Foundation releases them. The reason that Resin has chosen to use the Lite variant of the CM3 is that it means they can offer different variations of the Fin with support for 8 GB up to 64 GB of eMMC 5.1 Flash Memory, depending on the user’s use case. The CM3L uses the BCM2837, the same Broadcom chip found in the RPi 3, which is a quad core ARMv8 cluster, clocked at 1.2 GHz with its GPU at 400 MHz.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;img src=&quot;/images/resin-fin-002.JPG&quot; width=&quot;400px&quot; /&gt;
+&lt;h5 align=&quot;center&quot;&gt;Rear View (CM3L)&lt;/h5&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;artik-020-co-processor&quot;&gt;Artik 020 Co-Processor&lt;/h4&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://www.artik.io/modules/artik-020/&quot;&gt;Artik 020&lt;/a&gt; co-processor is an interesting addition to the Fin as it allows for the entire compute module to be powered down and up, programmatically. The Artik is also on the same I2C bus as the Fin’s Real Time Clock (RTC) and can use this to track sleep timings.&lt;/p&gt;
+
+&lt;p&gt;I’m yet to use the Artik 020 in an application but I could see this being useful if using the Fin in a power conservative situation such as relying on a battery + solar power solution. It might also find use with using the Artik’s on board Bluetooth module for detecting the presence of external devices and using this as an interrupt to wake the Fin.&lt;/p&gt;
+
+&lt;p&gt;Resin has mentioned that they are implementing &lt;a href=&quot;https://github.com/firmata/protocol&quot;&gt;firmata&lt;/a&gt; support for the Artik to allow it to be controlled via a client library on the CM3L. This would make the process of it much more simple as all of the control could sit within the Resin OS user application container, rather than having to reprogram the Artik at each instance.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;img src=&quot;/images/resin-fin-006.JPG&quot; width=&quot;400px&quot; /&gt;
+&lt;h5 align=&quot;center&quot;&gt;Artik 020 Co-Processor&lt;/h5&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Although I can see its uses, I don’t particularity envision the resin as a device that would utilise a sleep functionality; to me it’s better suited as an always on hub for relaying information back up to the cloud. Resin OS is most powerful when it can be updated immediately and instantly to any user changes/modifications. In my mind, resin devices are better as edge compute platforms or information relays rather than data aggregation which is better left to dependent devices such as microcontrollers, which then might use a Resin device as a back haul for their own telemetry.&lt;/p&gt;
+
+&lt;h4 id=&quot;networking&quot;&gt;Networking&lt;/h4&gt;
+
+&lt;p&gt;As mentioned earlier, the Resin Fin has the standard offering of Dual-band 802.11ac/a/b/g/n with both 2.4 &amp;amp; 5GHz support as well as Bluetooth 4.2. I appreciate that they have provide a uFL connector for the WiFi/Bluetooth radio; as you might expect the Fin to be crammed into a PLC shelf or next to RF noisy equipment, where a decent antenna would be essential. You can toggle between this and the on board antenna via a switch on the PCB.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;img src=&quot;/images/resin-fin-003.JPG&quot; width=&quot;400px&quot; /&gt;
+&lt;h5 align=&quot;center&quot;&gt;Rear View (CM3L + Mini PCI-E Modem)&lt;/h5&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I’ve included a Huawei ME909s-120 Cellular Modem (Mini PCI-E) with this blog post as cellular connectivity is an important part of the Fin’s offering. The ME909s-120 is an LTE capable modem with support for 8 LTE bands with up to 150 Mbps downlink rate.&lt;/p&gt;
+
+&lt;p&gt;I was impressed by how easy it was to get up and running with this modem. As soon as I had added the config for &lt;a href=&quot;https://docs.resin.io/reference/resinOS/network/2.x/&quot;&gt;Network Manager&lt;/a&gt; (which works in conjunction with &lt;a href=&quot;https://www.freedesktop.org/wiki/Software/ModemManager/&quot;&gt;ModemManager&lt;/a&gt;), the Fin immediately picked it up and started transmitting data. I’ve included the config file for using &lt;a href=&quot;https://hologram.io/&quot;&gt;Hologram’s&lt;/a&gt; Network below:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;connection&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;resin-cellular
+&lt;span class=&quot;nv&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;gsm
+&lt;span class=&quot;nv&quot;&gt;autoconnect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;gsm&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;apn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;hologram
+&lt;span class=&quot;nv&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;*99#
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;serial&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;baud&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;115200&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ipv4&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;auto
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ipv6&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+addr-gen-mode&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;stable-privacy
+&lt;span class=&quot;nv&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ignore&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Be cautious that this Network Manager config will immediately fire up the Cellular Modem begin transmitting your data over 3G/4G. This will spend your data allowance very quickly if you’re not careful!&lt;/p&gt;
+
+&lt;p&gt;It’s also worth mentioning that the Artik 020 has it’s own Bluetooth Modem and can use this for Bluetooth Low Energy (BLE) applications, independent of the CM3L.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-software&quot;&gt;The Software&lt;/h2&gt;
+
+&lt;p&gt;From a software perspective, the Fin is basically the same device as any other device that’s running Resin OS and that’s the beauty of it! It shouldn’t be any different from a software perspective as all Resin OS devices abstract their hardware through the wonders of the &lt;a href=&quot;https://www.balena.io/&quot;&gt;Balena&lt;/a&gt; container engine.&lt;/p&gt;
+
+&lt;h4 id=&quot;the-setup-process&quot;&gt;The Setup Process&lt;/h4&gt;
+
+&lt;p&gt;I’m cautious to comment on this as I understand that the Fin is still in development and that the Software/Set up Guides are not yet publicly exposed. I did find this somewhat convoluted and the instructions to be a little sparse but again, I have a pre-production device so this is to be expected!&lt;/p&gt;
+
+&lt;p&gt;To set the Fin up, I had to put the device into debug mode (connecting up the DBG micro USB port) which exposes the boot partition of the compute module. To do this on Linux (Debian), I was required to install the Raspberry Pi Foundation’s “&lt;a href=&quot;https://github.com/raspberrypi/usbboot&quot;&gt;usbboot&lt;/a&gt;” tool which is designed to access the boot partitions of the Compute Modules. Although a little confusing at first as to what was going on, this worked flawlessly and I was almost immediately granted access to the boot partitions on the device. Below are the commands required for usbboot under Linux.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ git clone --depth&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; https://github.com/raspberrypi/usbboot
+$ &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; usbboot
+$ sudo apt-get install libusb-1.0-0-dev
+$ make
+$ sudo ./rpiboot&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I’m aware that this usbboot functionality is being built into Resin’s &lt;a href=&quot;https://etcher.io/&quot;&gt;Etcher&lt;/a&gt; tool, so I withhold my criticism of this as set up tool, as Etcher is a fantastic tool for flashing OS images to SD cards and other types of storage media (i.e. it just works!). At present, you are required to used usbboot for the Fin to appear as a selectable target location under etcher, so run usbboot and then fire up Etcher and you should see your Fin device.&lt;/p&gt;
+
+&lt;p&gt;I did have a minor hiccup when setting the WLAN up as my Fin started up with its wireless interface initially labelled as mlan0 and with the interface set to down. However, after renaming the interface and through a couple of bash commands, I was able to get that working correctly. If you’re struggling with this, drop a comment below or reach out to me on twitter and I’ll try to help you solve this issue.&lt;/p&gt;
+
+&lt;h4 id=&quot;resin-os&quot;&gt;Resin OS&lt;/h4&gt;
+
+&lt;p&gt;I won’t touch on too much detail here as I briefly explained what Resin is and how it works in the introduction - which on its own, doesn’t really do justice to completely describing how Resin works! I may have to do a more detailed write up in future blog posts.&lt;/p&gt;
+
+&lt;p&gt;Although intended for use with Resin OS, there’s nothing dictating that this hardware can only used with Resin’s tools; you’re more than welcome to put Raspbian, Ubuntu Mate or any other RPi distribution of your choice on there!&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;img src=&quot;/images/resin-io-001.png&quot; width=&quot;600px&quot; /&gt;
+&lt;h5 align=&quot;center&quot;&gt;My Application - Resin.io&lt;/h5&gt;
+&lt;/div&gt;
+
+&lt;p&gt;What’s nice about resin is that all it takes is a simple git push and you can iterate on the version of code running on your device. Once you’ve followed resin’s installation instructions, loaded Resin OS onto your device and added your git remote for your resin branch, all you need is the following:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span&gt;&lt;/span&gt;$ git add . 
+$ git commit -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;Your commit to build for Resin&amp;quot;&lt;/span&gt; 
+$ git push resin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;And your code is pushed/built to a docker container at Resin.io before being forward onto your Resin OS device (if the image builds and deploys successfully). Resin does a nice job of informing you of build issues in its command line tool and will help you to debug any build failures.&lt;/p&gt;
+
+&lt;h5 id=&quot;feature-requests&quot;&gt;Feature Requests&lt;/h5&gt;
+
+&lt;p&gt;A feature that I’d like to see from Resin (which amazingly, they’ve already added to their public &lt;a href=&quot;https://trello.com/b/9CSzdCXQ/resin-product-roadmap&quot;&gt;roadmap&lt;/a&gt;!) is the ability to check the size of an image delta (the difference in code between two commits) before pushing it to a device. With my scenario in particular, data consumption is an important aspect of the product; I need to know how much data the device will be consuming and how to keep this to a minimum. Pushing entire docker images to a device is something that I want to take place over WiFi rather than cellular and if I do need to push over cellular I need to know how much data it will consume.&lt;/p&gt;
+
+&lt;h2 id=&quot;closing-thoughts--impressions&quot;&gt;Closing Thoughts &amp;amp; Impressions&lt;/h2&gt;
+
+&lt;p&gt;Overall, I’m very impressed with the Fin and I think Resin have done a great job positioning its features and use case towards a clear gap in the market. The Fin will inevitably find its way to the maker audience but I think it’ll find a nice home in many industrial use cases. The Fin has all the right tools for supporting dependent device applications with its capable 2.4 &amp;amp; 5 GHz connectivity options. Combining this with the Fin’s ability to connect mini-PCIE radio interfaces (LoRaWAN, LTE, Zigbee, etc.) and Resin’s powerful  OS means that the Fin is a also very capable gateway. I’m eager to see how Resin build the product with documentation and support as they’ve already laid the foundations for solid industrial applications.&lt;/p&gt;
+
+&lt;p&gt;I’m excited to see where the Fin ends up being deployed and I can already see application spaces such as the &lt;a href=&quot;https://www.thethingsnetwork.org/&quot;&gt;thingsnetwork&lt;/a&gt; being a great examples. If you want to dive into using the Fin as a gateway, I’d recommend checking out the &lt;a href=&quot;https://github.com/resin-io/edge-node-manager&quot;&gt;Edge Node Manager&lt;/a&gt; as well as an image I’ve written for &lt;a href=&quot;https://github.com/Bucknalla/resin-pycom-ota&quot;&gt;Firmware Over the Air with Pycom devices&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 09 Jun 2018 14:46:52 +0100</pubDate>
+        <link>http://bucknall.codes/blog/2018/review-resin-fin/</link>
+        <guid isPermaLink="true">http://bucknall.codes/blog/2018/review-resin-fin/</guid>
+        
+        
+        <category>review</category>
+        
+        <category>resin</category>
+        
+      </item>
+    
+      <item>
+        <title>New Website... Again!</title>
+        <description>&lt;p&gt;I’ve been messing around with website designs that I like (again… I know) and finally settled on something simple that I like. The new site is built on top of the Jekyll framework making it easier to upload content. Hopefully the new and improved website will encourage me to write more blog posts, documenting my research and personal projects.&lt;/p&gt;
+
+&lt;p&gt;I intend to restart my blog posts; aiming to write something every week and telling myself that it’s ok to write a short blog post. I think I’ll aim for one large post and 3 smaller ones every month. Hopefully that’s not too optimistic!&lt;/p&gt;
+
+&lt;p&gt;Drop me a comment if there’s anything in particular you’d like me to discuss/explore in these blog posts, relating to FPGAs, SDRs and IoT!&lt;/p&gt;
+</description>
+        <pubDate>Thu, 17 May 2018 14:46:52 +0100</pubDate>
+        <link>http://bucknall.codes/blog/2018/new-website-again/</link>
+        <guid isPermaLink="true">http://bucknall.codes/blog/2018/new-website-again/</guid>
+        
+        
+        <category>website</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>What is Software Defined Radio?</title>
+        <description>&lt;p&gt;The term, &lt;strong&gt;Software Defined Radio&lt;/strong&gt; (SDR) often gets conflated by the idea of Software Controlled Radios (SCR), which in essence are part of the control layer for an SDR but are by no means SDRs themselves. An SCR might be a radio system that is tunable or managed by software but the physical layer remains fixed in hardware. In contrast, SDRs are radios in which all or part of the physical layers (hardware) are manipulated/configured through the use of software.&lt;/p&gt;
+
+&lt;p&gt;In this blog post, I’ll dive into the what is meant by a “physical layer” further on but for now this is the layer that controls the modulation/demodulation, filtering, encoding, etc. of the receieved and/or transmitted signals. For example, a car radio might be controlled by software managing the frequencies of the user’s desired radio stations; this would be defined as a Software Controlled Radio.&lt;/p&gt;
+
+&lt;h2 id=&quot;thats-interesting-but-why-would-i-need-an-sdr&quot;&gt;That’s interesting but why would I need an SDR?&lt;/h2&gt;
+
+&lt;p&gt;SDR is interesting to a number of different types of users from academic to military application and from commercial to consumer. It might surprise you to know that you likely interact with an SDR every day, your mobile/cellular phone.&lt;/p&gt;
+
+&lt;h3 id=&quot;academic-research&quot;&gt;Academic Research&lt;/h3&gt;
+
+&lt;p&gt;This blog post hardly covers what can be done with SDR as every day new tools are frameworks are being published, offering open source implementations of current standards such as 802.11, ZigBee, LoRa and Bluetooth. Tools such as GNU Radio Companion when combined with lower cost wideband SDR hardware make it easier, faster and increasingly affordable for academics to explore with their research. My personal research interests relate to upcoming cellular standards for IoT and designing adaptive baseband layers on top of partially reconfigurable hardware (using a Xilinx Zynq SoC).&lt;/p&gt;
+
+&lt;h3 id=&quot;hobbyist-interest&quot;&gt;Hobbyist Interest&lt;/h3&gt;
+
+&lt;p&gt;Here’s a run down on some of the interesting things you can do with SDR:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Listen to Broadcast Radio (FM &amp;amp; AM)&lt;/li&gt;
+  &lt;li&gt;Set up your own HAM Radio&lt;/li&gt;
+  &lt;li&gt;Get involved with Radio Astronomy&lt;/li&gt;
+  &lt;li&gt;Track Aircraft with the Mode S Protocol&lt;/li&gt;
+  &lt;li&gt;Track Ships and other Vessels with AIS&lt;/li&gt;
+  &lt;li&gt;Build your own GSM Network&lt;/li&gt;
+  &lt;li&gt;Experiment with various other RF Protocols&lt;/li&gt;
+  &lt;li&gt;Many more!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please note that this is a none exclusive list as this hardly scratches the surface as to what can be done with SDR!&lt;/p&gt;
+
+&lt;h2 id=&quot;ok-youve-convinced-me-where-can-i-start-learning-about-sdr&quot;&gt;Ok, you’ve convinced me! Where can I start learning about SDR?&lt;/h2&gt;
+
+&lt;p&gt;Historically, SDR has had a relatively high barrier to entry for beginners as the cost point of typical open SDRs hardware and toolkits has been in the region of £1000+. Fortunately, the open source community has assembled a fantastic set of tools that support a huge variety of radios, known as GNU Radio. GNU Radio applications can be written in C++ &amp;amp; Python lanugages as well as assembled in flow diagram formats using a tool called the GNU Radio Companion. This toolkit is 100% and supports from the very low end of SDRs (~£20) all the way through to industry standard devices.&lt;/p&gt;
+
+&lt;p&gt;To get started, I’d recommend taking a look at &lt;img src=&quot;https://www.rtl-sdr.com/about-rtl-sdr/&quot; alt=&quot;RTL-SDR&quot; /&gt;, a $20 USB TV Tuner Dongle that can be used as a computer based radio scanner. This nifty device will let you play with a whole range of interesting SDR from simple amplitude &amp;amp; frequency modulation/demodulation to &lt;img src=&quot;https://blog.kroy.io/monitoring-home-power-consumption-for-less-than-25/&quot; alt=&quot;reading smart meters&quot; /&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;useful-sdr-resources&quot;&gt;Useful SDR Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://greatscottgadgets.com/hackrf/&quot;&gt;Hack RF&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://greatscottgadgets.com/sdr/&quot;&gt;Learn SDR with Hack RF&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://coderwall.com/p/roldfw/getting-started-with-sdr-with-rtl2832u&quot;&gt;Get Started with SDR - RTL-SDR&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://www.rs-online.com/designspark/10-things-you-can-do-with-software-defined-radio&quot;&gt;RS - What is SDR?&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 25 Dec 2017 16:42:24 +0000</pubDate>
+        <link>http://bucknall.codes/blog/2017/what-is-sdr/</link>
+        <guid isPermaLink="true">http://bucknall.codes/blog/2017/what-is-sdr/</guid>
+        
+        <category>sdr</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Intro to Zedboard and Xilinx Zynq SoC</title>
+        <description>&lt;p&gt;As I start down the road of building complex systems with the Xilinx Zynq platform, I’ve decided to document what I’m learning from using the device as a record of what I’m doing as well as documentation for others using this PSoC (Programmable System on Chip) and tool chain.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-the-zedboard-and-the-zynq&quot;&gt;What is the Zedboard and the Zynq?&lt;/h2&gt;
+
+&lt;p&gt;The Zedboard is a Digilent Development Board for the Xilinx Zynq-7000 SoC (AP SoC). The Zynq platform is particularly interesting as it includes both a processing systems (PS) and programmable logic layer (PL). In essence, this means that the user has access to a full general purpose processor, which is accompanied by the logical fabric of an FPGA.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-will-i-be-using-it-for&quot;&gt;What will I be using it for?&lt;/h2&gt;
+
+&lt;p&gt;My interest for using the Zedboard relates to two aspects of the development board; the SoC and the FMC connector (the port on the right side of the board). I’m intending to use the Xilinx Zynq SoC as an adaptive baseband controller of a Software Defined Radio System. This is in part, to the lead up of my thesis, of which this research will help me to determine the topic.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;img src=&quot;/images/zynq.png&quot; width=&quot;400px&quot; /&gt;
+&lt;h5 align=&quot;center&quot;&gt;Zynq-7000 SoC Block Diagram — fig 1.&lt;/h5&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;who-are-these-posts-for&quot;&gt;Who are these posts for?&lt;/h2&gt;
+
+&lt;p&gt;These posts are for anyone looking at getting into programmable logic development, software defined radio or simply interested in following what I’m working on. My philosophy is that the best way to learn is to teach and hopefully by sharing these posts and tutorials, I’ll reinforce what I’ve been working on as well as create a record for my own sanity!&lt;/p&gt;
+
+&lt;h2 id=&quot;what-will-i-be-talking-about&quot;&gt;What will I be talking about?&lt;/h2&gt;
+
+&lt;p&gt;I intend to use these medium posts as a way to talk in more detail about some of the following topics.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Software Defined Radio (SDR)&lt;/li&gt;
+  &lt;li&gt;System Verilog and various hardware description languages (HDLs)&lt;/li&gt;
+  &lt;li&gt;SoC and how to utilize the power/flexibility of general purpose processing as well as the PL fabric&lt;/li&gt;
+  &lt;li&gt;A number of other related topics; Micro controllers, C/C++, Git, etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://www.zedboard.org/product/zedboard&quot;&gt;figure 1.&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 15 Dec 2017 19:19:43 +0000</pubDate>
+        <link>http://bucknall.codes/blog/2017/intro-zed-zynq/</link>
+        <guid isPermaLink="true">http://bucknall.codes/blog/2017/intro-zed-zynq/</guid>
+        
+        
+        <category>zynq</category>
+        
+      </item>
+    
+  </channel>
+</rss>
